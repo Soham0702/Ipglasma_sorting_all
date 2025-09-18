@@ -5,7 +5,7 @@
 #include <string>
 #include <iomanip>
 #include <cmath>
-//#include <omp.h>
+#include <omp.h>
 
 
 int main()
@@ -14,7 +14,7 @@ int main()
     std::vector <double> energy(events);
     std::ofstream out("2event_data.dat");
 
-//#pragma omp parallel for
+#pragma omp parallel for
     for(int i=0; i<events; i++)
     {
 //        if( i%100 == 0)
