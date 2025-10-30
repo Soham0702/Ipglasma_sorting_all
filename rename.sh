@@ -5,8 +5,8 @@ set -euo pipefail
 
 
 m=21
-c=125
-for ((i=2; i<m; i++))               #i will be 2, dont worry
+c=1
+for ((i=1; i<m; i++))
 do
         folder="run-$i"
         cd "$folder" || { echo "Failed to cd into $folder"; exit 1; }
