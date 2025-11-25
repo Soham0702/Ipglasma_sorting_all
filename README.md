@@ -2,7 +2,7 @@ rename.sh ->energy.cpp -> sort.cpp -> cent.sh.
 rename and copy files to all files -> extract energy and event number-> sort based on energy and give output file "details" -> move to new directory.
 
 final after urqmd
-pickevents.cpp -> copyfiles.sh -> renamemove.sh
+pickevents.cpp -> copyfiles.sh -> moveresults.sh
 
 pick events you want -> copy files from directory -> rename and move directories and files from job-1 to job-n
 
