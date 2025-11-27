@@ -6,6 +6,8 @@ pickevents.cpp -> copyfiles.sh -> moveresults.sh
 
 pick events you want -> copy files from directory -> rename and move directories and files from job-1 to job-n
 
+mult_v2_avg.cpp gets the multiplicity and v2 from the cents
+
 
 
 
