@@ -1,5 +1,9 @@
 rename.sh ->energy.cpp -> sort.cpp -> cent.sh.
-rename and copy files to all files -> extract energy and event number-> sort based on energy and give output file "details" -> move to new directory.
+rename and copy files to all files 
+-> extract energy and event number
+-> sort based on energy and give output file "details" 
+-> move to new directory.
+
 
 final after urqmd
 pickevents.cpp -> copyfiles.sh -> moveresults.sh
@@ -17,9 +21,9 @@ Here I include all the bash and cpp files, parameter files that i have used to s
 there are comments and i will five the workflow below:
 
 
-0.  Here i run 2500 events and only need (0-40)%, so I sort first with energy density, then for (0-50)%  I do MUSIC. 
+0.  Here i run 5000 events and only need (0-40)%, so I sort first with energy density, then for (0-50)%  I do MUSIC->UrQMD. 
 1.  Pick any initial s-factor, e.g., 1.0.
-2.  Run all 2500 events, extract final N_ch
+2.  Run all 2500 events(top 0-50) extract final N_ch
 3.  Sort events by Nchi, assign centrality percentiles.
 4.  In 0–5% bin, compute: <N_ch> = 1/n SUM(N^i_ch), and define C = N_data/ N_sim
 
