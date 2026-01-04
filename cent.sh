@@ -17,7 +17,7 @@ for bi in "${!dirs[@]}"; do
     idx=$((offset + j))
     [[ $idx -lt ${#ids[@]} ]] || break
     id="${ids[$idx]}"
-    for prefix in "epsilon-u-Hydro-TauHydro-" "NcollList" "NpartList" "usedParameters" "NgluonEstimators"; do
+    for prefix in "epsilon-u-Hydro-TauHydro-" "NcollList"; do
         src="all_files/${prefix}${id}.dat"
         if [[ -f "$src" ]]; then
             cp -- "$src" "$dir/"
