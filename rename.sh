@@ -50,4 +50,4 @@ mkdir -p "all_files"
 for d in run-*/; do
           cp -a "$d/epsilon-u-Hydro-TauHydro-"* all_files/
           cp -a "$d/NcollList"* all_files/
-  done
+done
