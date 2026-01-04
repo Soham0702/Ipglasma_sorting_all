@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     std::ifstream in(argv[1]);
     std::ofstream out("details");
 
-    int nev =2500;
+    int nev =5000;
 
 
     std::vector <int> iev(nev);

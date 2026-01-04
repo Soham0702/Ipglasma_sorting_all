@@ -5,13 +5,13 @@ set -euo pipefail
 
 
 m=21                                                                                                                                                                                                                                                                                                             
-k=125
+k=250
 for ((i=1; i<2; i++))
 do
         folder="run-$i"
         cd "$folder" || { echo "Failed to cd into $folder"; exit 1; }
     
-        for ((j=124;j>=0;j--))
+        for ((j=249;j>=0;j--))
         do
                 echo "moving item $k"
                 mv "epsilon-u-Hydro-TauHydro-$j.dat" "epsilon-u-Hydro-TauHydro-$k.dat"
@@ -25,13 +25,13 @@ do
 done
 echo "Done renaming files 1"
 
-c=126
-for ((i=2; i<3; i++))
+c=251
+for ((i=2; i<m; i++))
 do
         folder="run-$i"
         cd "$folder" || { echo "Failed to cd into $folder"; exit 1; }
     
-        for ((j=0;j<125;j++))
+        for ((j=0;j<250;j++))
         do
                 echo "moving item $c"
                 mv "epsilon-u-Hydro-TauHydro-$j.dat" "epsilon-u-Hydro-TauHydro-$c.dat"
@@ -45,8 +45,9 @@ do
 done
 echo "Done renaming files 2"
 
-mkdir "all_files"
+mkdir -p "all_files"
 
 for d in run-*/; do
-          cp -a "$d"* all_files/
+          cp -a "$d/epsilon-u-Hydro-TauHydro-"* all_files/
+          cp -a "$d/NcollList"* all_files/
   done

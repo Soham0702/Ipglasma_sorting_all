@@ -10,12 +10,12 @@
 
 int main()
 {
-    int events =2500;
+    int events =5000;
     std::vector <double> energy(events);
     std::ofstream out("2event_data.dat");
 
 #pragma omp parallel for
-    for(int i=0; i<events; i++)
+    for(int i=1; i<=events; i++)
     {
 //        if( i%100 == 0)
 //            std::cout<<"Reading file :  "<<i<<std::endl;
@@ -47,7 +47,7 @@ int main()
 
     }
     out<<std::fixed << std::setprecision(10);
-    for(int i=0;i<events;i++)
+    for(int i=1;i<=events;i++)
         out<<i<<"\t"<<energy[i]<<std::endl;
     std::cout<<"All done."<<std::endl;
 return 0;
