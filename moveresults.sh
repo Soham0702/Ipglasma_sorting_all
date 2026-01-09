@@ -23,43 +23,34 @@ for d in "${!dirs[@]}"; do
     m=1 
     echo
     dir="${dirs[$d]}"
+    sz="${sizes[$d]}"
     echo "Checking directory: $dir"
     if [[ ! -d "$dir" ]]; then
         echo "  Directory missing, skipping."
         offset=$((offset + sz))
         continue
     fi  
-    sz="${sizes[$d]}"
+    mkdir -p "$dir/dummy"
     for ((j=0; j<sz; j++)); do
         idx=$((offset + j))
         [[ $idx -lt ${#ids[@]} ]] || break
         id="${ids[$idx]}"
-        mv "$dir/job-$id" "$dir/jobtmp-$id/"
-        mv "$dir/jobtmp-$id/results/epsilon-u-Hydro-TauHydro-$id.dat" "$dir/jobtmp-$id/epsilon-u-Hydro-TauHydro-$m.dat"
-        mv "$dir/jobtmp-$id/results/NcollList$id.dat" "$dir/jobtmp-$id/NcollList$m.dat"
-        rm -rf "$dir/jobtmp-$id"/results/
-        rm -rf "$dir/jobtmp-$id/music_EOS"
-        rm -rf "$dir/jobtmp-$id/EOS"
-        cp -r "/home/soham/jets/ipglasma/ipglasma_master/check/0-50_1250/job-test/EOS" "$dir/jobtmp-$id/"
-        mv "$dir/jobtmp-$id/music_input_run_$id" "$dir/jobtmp-$id/music_input_run_$m"
-        sed -i \
-            -e "s|^$prefix1.*|$prefix1  epsilon-u-Hydro-TauHydro-$m.dat|" \
-            -e "s|^$prefix2.*|$prefix2  NcollList$m.dat|" \
-                  "$dir/jobtmp-$id/music_input_run_$m"
-        rm "$dir/jobtmp-$id"/particle_list*
-        rm "$dir/jobtmp-$id"/hadrons_list.dat
-        rm "$dir/jobtmp-$id"/fort.30
-        rm "$dir/jobtmp-$id"/trigger_particle.dat
-        rm "$dir/jobtmp-$id"/tables.dat
-        rm "$dir/jobtmp-$id"/OSCAR.input
-        mv "$dir/jobtmp-$id" "$dir/jobtmp-$m"
+        src="$dir/job-$id"
+        tmp="$dir/dummy/jobtmp-$m"
+
+        mv "$src" "$tmp"
+        mv "$tmp/epsilon-u-Hydro-TauHydro-$id.dat" "$tmp/epsilon-u-Hydro-TauHydro-$m.dat"
+        mv "$tmp/NcollList$id.dat" "$tmp/NcollList$m.dat"
+        mv "$tmp/music_input_run_$id" "$tmp/music_input_run_$m"
         ((m++))
     done
     for ((k=1; k<m; k++)); do
-        if [[ -d "$dir/jobtmp-$k" ]]; then
-            mv "$dir/jobtmp-$k" "$dir/job-$k"
-        fi
+        if [[ -d "$dir/dummy/jobtmp-$k" ]]; then
+            mv "$dir/dummy/jobtmp-$k" "$dir/dummy/job-$k"
+        fi  
     done
+    mv "$dir/dummy"/* "$dir"
+    rm -rf "$dir/dummy"
     offset=$((offset + sz))
 done
 echo
